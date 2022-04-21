@@ -2,11 +2,12 @@
   <div class="home">
     <h1>Post Info</h1>
     <p>Title: {{ post.title }}</p>
-    <img v-bind:src="recipe.image_url" v-bind:alt="recipe.title" style="max-width: 250px" />
+    <img v-bind:src="post.image_url" v-bind:alt="post.title" style="max-width: 250px" />
     <p>Body: {{ post.body }}</p>
     <p>Image: {{ post.image }}</p>
-    <router-link to="/posts">style="marin-right: 10px">Back to all posts</router-link>
-    <router-link v-bind:to="`/posts/${post.id}/edit`" style="margin-right: 10px">Edit Recipe</router-link>
+    <router-link to="/posts" style="marin-right: 10px">Back to all posts</router-link>
+    <router-link v-bind:to="`/posts/${post.id}/edit`" style="margin-right: 10px">Edit Post</router-link>
+    <button v-on:click="destroyPost()">Delete</button>
   </div>
 </template>
 

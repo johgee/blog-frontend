@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+
 export default {
   data: function () {
     return {
@@ -42,11 +43,19 @@ export default {
         <label>Password:</label>
         <input type="password" v-model="newUserParams.password" />
       </div>
+      <small v-if="newUserParams?.password?.length > 0 && newUserParams?.password?.length < 6" class="text-danger">
+        Password must be longer than 6 characters.
+      </small>
       <div>
         <label>Password confirmation:</label>
         <input type="password" v-model="newUserParams.password_confirmation" />
       </div>
-      <input type="submit" value="Submit" />
+      <small v-if="newUserParams.password !== newUserParams.password_confirmation" class="text-danger">
+        Password confirmation shoud match password.
+      </small>
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
     </form>
   </div>
 </template>

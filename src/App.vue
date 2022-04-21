@@ -1,20 +1,7 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-    |
-    <router-link to="/posts">All Posts</router-link>
-    |
-    <router-link to="/new">New Post</router-link>
-    |
-    <router-link to="/signup">Signup</router-link>
-    |
-    <router-link to="/login">Login</router-link>
-    |
-    <router-link to="/logout">Logout</router-link>
-  </nav>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">my blog</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -29,31 +16,22 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+            <a class="nav-link" href="/posts">All Posts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+            <a class="nav-link" href="/posts/new">New Post</a>
+          </li>
+          <li v-if="!isLoggedIn" key="" class="nav-item">
+            <a class="nav-link" href="/signup">Signup</a>
+          </li>
+          <li v-if="!isLoggedIn" class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li v-if="!isLoggedIn" class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
           </li>
         </ul>
         <form class="d-flex">
@@ -63,5 +41,33 @@
       </div>
     </div>
   </nav>
-  <router-view />
+  <!-- <router-view /> -->
+  <div class="container-fluid mx-auto">
+    <router-view />
+  </div>
 </template>
+
+<script>
+export default {
+  data: function () {
+    return {
+      isLoggedIn: false,
+    };
+  },
+  watch: {
+    $route: function () {
+      this.isLoggedIn = !!localStorage.jwt;
+    },
+  },
+};
+</script>
+
+<style>
+.navbar-brand {
+  font-family: "Merriweather", serif;
+  font-size: 2em;
+}
+body {
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/more-leaves-on-green.png");
+}
+</style>
