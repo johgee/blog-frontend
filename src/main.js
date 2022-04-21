@@ -4,7 +4,7 @@ import router from "./router";
 import axios from "axios";
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "http://blog-api.herokuapp.com";
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://shrouded-shore-78246.herokuapp.com/posts";
 
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
